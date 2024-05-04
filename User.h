@@ -12,12 +12,9 @@ struct STUDENTS
 	struct STUDENTS *NEXT;
 };
 void user();
-void login();
+void menu_user();
+void Find_Student();
 void View_your_record();
 void Edit_your_password();
 void Edit_your_name();
 #endif
-
-
-
-

@@ -1,132 +1,69 @@
 #include "Heder.h"
-//عملتله اكسترين علشان ف هنا فانكشن معتمده علهيه وعلشان اعرف استخدمه 
+//عملتله اكسترين علشان ف هنا فانكشن معتمده علهيه وعلشان اعرف استخدمه
 extern  struct STUDENTS * Head;
 struct STUDENTS * HELP=NULL;
+struct STUDENTS * PAST=NULL;
+struct STUDENTS * TEMP=NULL;  
 char admin_password[10];
 void admin()
-{   printf("loading");
+{  /* printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
         }
-
-    clearScreen();
+    clearScreen();*/
     char choice_2;
-    printf("***************************\n");
-    printf("for login enter L : \n");
-    printf("for back  enter B : \n");
-    printf("***************************\n");
-    fflush(stdin);
-    scanf("%c",&choice_2);
-    switch(choice_2)
+    while(1)
+    {
+        printf("***************************\n");
+        printf("for menu enter  [M] : \n");
+        printf("for exit  enter [E] : \n");
+	    printf("for BACK enter [B] : \n");
+        printf("***************************\n");
+        fflush(stdin);
+        scanf("%c",&choice_2);
+        if(choice_2=='M')
         {
-        case 'L':
-            login_admin();
-            break;
-        case 'B':
+            menu_admin();
+        }
+        else if (choice_2=='E')
+        {
+            EXIT();
+               break;
+        }
+		else if (choice_2=='B')
+        {
             first_page();
-            break;
-        default:
+               break;
+        }
+        else
+        {
+
             printf("Invalid option!!!!!! \n");
         }
+    }
+
 }
-int login_admin()
-{  
-	FILE *file;
-	char username[50];
-	char password[50];
-	char file_username[50];
-	char file_password[50];
-    printf("loading");
-    for(int i=0;i<3;i++)
-        {
-            printf(".");
-            sleep(1);
-        }
-    clearScreen();
-    printf("***************************\n");
-	// افتح ملف النص للقراءة
-    int c,i=0;
-				file = fopen("Admin_info.csv", "r");
-				if (file == NULL)
-				{
-					printf("Unable to open file.\n");
-					return 0;
-				}
 
-				// اقرأ اسم المستخدم من الملف حتى الفاصلة
-				while ((c = fgetc(file)) != EOF && c != ',')
-				{
-					file_username[i++] = c;
-				}
-				file_username[i] = '\0'; // إضافة نهاية السلسلة
-
-				// اقرأ كلمة المرور من الملف بعد الفاصلة
-				i = 0;
-				while ((c = fgetc(file)) != EOF && c != '\n')
-				{
-					file_password[i++] = c;
-				}
-				file_password[i] = '\0'; // إضافة نهاية السلسلة
-				int attempts=3,Flag=0;
-				while(attempts--)
-				{
-					// اطلب من المستخدم إدخال اسم المستخدم وكلمة المرور
-					printf("Enter username:");
-					scanf("%s", &username);
-					printf("Enter password:");
-					for (i = 0; i < 50; i++)
-					{
-						c = getch();
-						if(c == 13)
-						   break;
-						printf("*");
-						password[i]=c;
-					}
-					password[i]='\0';
-					// قارن الاسم وكلمة المرور
-					if (strcmp(username, file_username) == 0 && strcmp(password, file_password) == 0)
-					{
-						Flag=0;
-						clearScreen();
-						printf("\nLogin Successful! \n");
-						break;
-					} 
-					else
-					{
-						Flag=1;
-						if(attempts!=0){
-						   clearScreen();
-						   printf("Invalid username or password You Can Try Again.\n");
-						}
-					}
-				}
-				if(Flag==1)
-				{
-					clearScreen();
-				    printf("No matter what you do, thief, you will not be able to hack the system\n");
-				    return 0;
-				}
-				// أغلق ملف النص
-				fclose(file);
-    printf("loading");
+void menu_admin(){
+    /*printf("loading");
     for(int i=0;i<3;i++)
-        {
-            printf(".");
-            sleep(1);
-        }
-		 unsigned int menu_choice;
-    clearScreen();
-    printf("               menu                  \n");
-    printf("*************************************\n");
-    printf("for Add student record enter 1     : \n");
-    printf("for Remove student record  enter 2 : \n");
-    printf("for View student record enter 3    : \n");
-    printf("for View all records  enter 4      : \n");
-    printf("for Edit admin password enter 5    : \n");
-    printf("for Edit student grade enter 6     : \n");
-    printf("*************************************\n");
+	{
+		printf(".");
+		sleep(1);
+	}
+    clearScreen();*/
+    unsigned int menu_choice;
+    printf("                 menu                  \n");
+    printf("*******************************************\n");
+    printf("for Add student record enter     [1] : \n");
+    printf("for Remove student record  enter [2] : \n");
+    printf("for View student record enter    [3] : \n");
+    printf("for View all records  enter      [4] : \n");
+    printf("for Edit admin password enter    [5] : \n");
+    printf("for Edit student grade enter     [6] : \n");
+    printf("*******************************************\n");
     fflush(stdin);
     scanf("%i",&menu_choice);
     switch(menu_choice)
@@ -174,12 +111,13 @@ void Add_student_record()
 	printf("Now You Enter Data Please Foucs\n\n");
 	printf("Enter Name:\n");gets(SNew->Name);
 	fflush(stdin);
-	printf("Enter Grade:\n");scanf("%d",&SNew->Grade);
+	printf("Enter Grade:\n");scanf("%f",&SNew->Grade);
+	fflush(stdin);
 	while(1)
     {
 		struct STUDENTS * CheckID=NULL;
 		CheckID=Head;
-		printf("Enter ID:\n");scanf("%d",&SNew->Id);
+		printf("Enter ID:\n");scanf(" %i",&SNew->Id);
         while(CheckID->NEXT!=NULL)
         {
             if(CheckID->Id==SNew->Id)
@@ -194,9 +132,9 @@ void Add_student_record()
         }
 		if(CheckID->NEXT==NULL) break;
     }
-	
-	printf("Enter Gender:\n");scanf("%s",&SNew->Gender);
-	printf("Enter Age:\n");scanf("%s",&SNew->Age);
+
+	printf("Enter Gender:\n");scanf(" %s",&SNew->Gender);
+	printf("Enter Age:\n");scanf("%i",&SNew->Age);
 	printf("Enter Password:\n");
 	int c;int i;
     for (i = 0; i < 50; i++)
@@ -224,12 +162,10 @@ void View_all_records()
 		if(i++==0)
 		printf("                                                     STUDENTS LIST                                                         \n");
 
-		printf("<-STUDENT[%d]->\nName:%s\nGrade:%d\nID:%d\nGender:%s\nAge:%d\nPassword:%s\n\n\n",++counter_Client,HELP->Name,HELP->Grade,HELP->Id,HELP->Gender,HELP->Age,HELP->Password);
+		printf("<-STUDENT[%d]->\nName:%s\nGrade:%0.2f\nID:%d\nGender:%s\nAge:%d\nPassword:%s\n\n\n",++counter_Client,HELP->Name,HELP->Grade,HELP->Id,HELP->Gender,HELP->Age,HELP->Password);
 		HELP=HELP->NEXT;
 	}
 }
-
-
 void View_student_record ()
 {
 
@@ -239,29 +175,202 @@ void View_student_record ()
 	HELP=Head;
 	while(HELP!=NULL)
 	{
-        printf("                         Student Information                     \n");
 
-	  if(HELP->Id==user_id)
-	  {
-		  found =1 ;
-		printf("\nName:%s\nGrade:%d\nID:%d\nGender:%s\nAge:%d\nPassword:%s\n\n\n",HELP->Name,HELP->Grade,HELP->Id,HELP->Gender,HELP->Age,HELP->Password);
-		  break;
-	  }
+        if(HELP->Id==user_id)
+        {
+            found =1 ;
+            printf("\n         student info           \n");
+            printf("************************************");
+            printf("Name: %s    \n", HELP->Name);
+            fflush(stdin);
+            printf("Grade: %0.2f \n", HELP->Grade);
+            printf("ID: %d\n", HELP->Id);
+            printf("Gender: %s\n", HELP->Gender);
+            fflush(stdin);
+            printf("Age: %d\n", HELP->Age);
+            printf("Password: %s\n\n", HELP->Password);
+            printf("*********************************");
+
+
+        printf("\n");
+            break;
+	}
 	  HELP= HELP->NEXT ;
 	}
 
 	if (!found) printf("Student with ID %d Not Found Ya Admoooooooooooooooooon.\n", user_id);
 }
-void Edit_admin_password()
-{
+void Edit_admin_password() {
+    FILE *file;
+    char line[100];
+    int c, i = 0;
+    char password[10];
+    char *token;
+    char username[50];
 
-}
-void Edit_student_grade()
-{
+    /*printf("loading");
+    for(int i=0;i<3;i++)
+    {
+        printf(".");
+        sleep(1);
+    }
+    clearScreen();*/
+    printf("Enter username: ");
+    scanf("%s",username);
+    printf("\n");
+    printf("Enter new password:");
+    for (i = 0; i < 10; i++)
+    {
+        c = getch();
+        if(c == 13 )
+            break;
+        printf("*");
+        password[i]=c;
+    }
+    password[i]='\0';
 
+    file = fopen("Admin_info.csv", "r+");
+    if (file == NULL)
+    {
+        printf("Unable to open file.\n");
+        return;
+    }
+   size_t username_length = strlen(username);
+
+    // Read each line from the file
+    while (fgets(line, sizeof(line), file) != NULL)
+    {
+        // Find the username in the line
+        token = strtok(line, ",");
+        if (token != NULL && strncmp(token, username, username_length) == 0) {
+
+            fseek(file, 0, SEEK_SET); // Move the file pointer back to the start of the line
+            fprintf(file, "%s,%s\n", username, password); // Write the new line
+            printf("\nPassword updated successfully.\n");
+            fclose(file);
+            return;
+        }
+    }
+    // If the password is not found, print an error message
+    printf("\nPassword not found.\n");
+    fclose(file);
 }
-void Remove_student_record()
-{
-	
+void Edit_student_grade() {
+    unsigned int check_id, new_grade;
+    char choice;
+   /* printf("loding");
+    for (int i = 0; i < 3; i++)
+    {
+        printf(".");
+        sleep(1);
+    }
+    clearScreen();*/
+    printf("***********************************\n");
+    printf("Enter ID of student to edit:\n");
+    scanf("%u", &check_id);
+
+    if (Head == NULL) {
+        printf("\nThere isn't any data.\n");
+        return;
+    }
+
+    HELP = Head;
+    while (HELP != NULL) {
+        if (HELP->Id == check_id)
+        {
+            printf("Correct ID\n");
+            printf("Enter new grade: ");
+            scanf("%i", &new_grade);
+
+            if (new_grade >= 0 && new_grade <= 100)
+            {
+                HELP->Grade = new_grade;
+                printf("Grade updated successfully.\n");
+                break;
+            }
+            else
+            {
+                printf("Grade out of range.\n");
+                printf("***********************************\n");
+                printf("To try again press [T]:\n");
+                printf("To exit press      [E]:\n");
+                scanf(" %c", &choice);
+                printf("***********************************\n");
+                switch (choice) {
+                    case 'T':
+                        Edit_student_grade();
+                        break;
+                    case 'E':
+                        EXIT();
+                        return;
+                    default:
+                        printf("Invalid option!\n");
+                        break;
+                }
+            }
+        }
+        HELP = HELP->NEXT;
+    }
+
+    if (HELP == NULL) {
+        printf("No student registered with this ID.\n");
+    }
+
+    printf("***********************************\n");
 }
+void Remove_student_record(){
+    unsigned int check_id;
+    char choice;
+    /*printf("loding");
+    for (int i = 0; i < 3; i++)
+    {
+        printf(".");
+        sleep(1);
+    }
+    clearScreen();*/
+    printf("***********************************\n");
+    printf("Enter ID of student to delete:\n");
+    scanf("%i", &check_id);
+
+    if (Head == NULL)
+    {
+        printf("\nThere isn't any data.\n");
+        return;
+    }
+    else
+    {
+        HELP = Head;
+        while (HELP != NULL)
+        {
+            if (HELP->Id == check_id)
+            {
+                printf("Correct ID\n");
+                if (PAST == NULL)
+                { // If the node to delete is the head
+                    Head = HELP->NEXT;
+                }
+                else
+                {
+                    PAST->NEXT = HELP->NEXT;
+                }
+                TEMP = HELP;
+                HELP = HELP->NEXT;
+                free(TEMP); // Free memory
+                printf("Deleted successfully.\n");
+                printf("***********************************\n");
+
+                return;
+            }
+            PAST = HELP;
+            HELP = HELP->NEXT;
+         }
+         printf("No student registered with this ID.\n");
+         printf("***********************************\n");
+    }
+}
+
+
+
+
+
 //gcc admin.c User.c Mangment.c main.c -o p.exe
