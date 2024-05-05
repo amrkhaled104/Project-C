@@ -23,18 +23,13 @@ and the user has to choose the mode at the beginning.
 2. Edit your password. 
 3. Edit your name 
 ## Admin mode :  
-The system asks for the password, the default password is 1234. The user has 3 attempts 
-to enter the password correctly. 
+The system asks for the password, the default password is 1234. The user has 3 attempts to enter the password correctly. 
 #### 1-Add student record: -
-To add a new student, the admin shall enter this basic information: (student name, 
-total grade, unique id, age, gender, and password). - The ID shall be unique for the user, if the entered ID already exists, the system shall 
-reject the entry. 
+To add a new student, the admin shall enter this basic information: (student name, total grade, unique id, age, gender, and password). - The ID shall be unique for the user, if the entered ID already exists, the system shall reject the entry. 
 #### 2-Remove student record: -
-The admin can remove a student record by entering the student ID. if the entered ID 
-doesn’t exist, the system shall reject the transaction. 
+The admin can remove a student record by entering the student ID. if the entered ID doesn’t exist, the system shall reject the transaction. 
 #### 3-View student records: -
-By entering the student ID, the system shall show the basic information for the 
-student. 
+By entering the student ID, the system shall show the basic information for the student. 
 #### 4-View all records: - 
 This function displays all entered student records. 
 #### 5-Edit admin password 
@@ -42,7 +37,10 @@ This function displays all entered student records.
 It will take a student Id, if the ID exists, it will edit the total grade 
 
 ## User mode : 
-#### 1-View your record - By entering your ID, the system shall show the basic information for your record. 
-#### 2-Edit your password - By entering your ID, you can edit your password. 
-#### 3-Edit your name - By entering your ID, you can edit your name. 
+#### 1-View your record - 
+By entering your ID, the system shall show the basic information for your record. 
+#### 2-Edit your password -
+By entering your ID, you can edit your password. 
+#### 3-Edit your name -
+By entering your ID, you can edit your name. 
 
