@@ -1,8 +1,6 @@
 # Project-C
-## Student-Record-System-
+## Student Record System Project using C
 
-
-##### This is a mini-project “Student Record System Project using C” 
 ● Student record contains his name, total grade, unique id, age, gender, and password. 
 
 ● The system has two modes: 
