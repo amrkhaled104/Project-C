@@ -3,13 +3,22 @@
 struct STUDENTS *Head=NULL;
 struct STUDENTS *Help=NULL;
 int User_Id;
+/*
+----------------------------------------------------------------------------
+Name:user
+Parameters:No parameters
+Return: Nothing to return
+Usage: it ask if he want menu or to exit.
+----------------------------------------------------------------------------
+*/
 void user()
-{   /*printf("loading");
+{   printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }*/
+        }
+    clearScreen();
 
    while(1)
     {
@@ -36,21 +45,29 @@ void user()
         }
     }
 }
+/*
+----------------------------------------------------------------------------
+Name:menu_user
+Parameters:No parameters
+Return: Nothing to return
+Usage: it show menu for user and ask him to choose what page he want to go to.
+----------------------------------------------------------------------------
+*/
 void menu_user()
 {   unsigned int menu_choice;
-    /*printf("loading");
+    printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
         }
-    clearScreen();*/
+    clearScreen();
     printf("               menu                \n");
     printf("***********************************\n");
-    printf("for View your record enter 1     : \n");
-    printf("for Edit your password  enter 2  : \n");
-    printf("for Edit your name enter 3       : \n");
-    printf("**********************************8\n");
+    printf("for View your record enter    [1]  : \n");
+    printf("for Edit your password  enter [2]  : \n");
+    printf("for Edit your name enter      [3]  : \n");
+    printf("**********************************\n");
     scanf("%i",&menu_choice);
 	Find_Student();
     switch(menu_choice)
@@ -68,10 +85,24 @@ void menu_user()
             printf("Invalid option!!!!!! \n");
         }
 }
-
+/*
+----------------------------------------------------------------------------
+Name:Find_Student
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to search about student in memory.
+----------------------------------------------------------------------------
+*/
 
 void Find_Student()
 {
+	printf("loading");
+    for(int i=0;i<3;i++)
+        {
+            printf(".");
+            sleep(1);
+        }
+    clearScreen();
 	Help=Head;
 	while(Help!=NULL)
 	{
@@ -82,10 +113,18 @@ void Find_Student()
 	  	Help= Help->NEXT ;
 	}
 }
+/*
+----------------------------------------------------------------------------
+Name:View_your_record
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to View his record.
+----------------------------------------------------------------------------
+*/
 void View_your_record()
 {
 	        printf("\n         %s info           \n",Help->Name);
-            printf("************************************");
+            printf("************************************\n");
             printf("Name: %s    \n", Help->Name);
             fflush(stdin);
             printf("Grade: %0.2f \n", Help->Grade);
@@ -94,10 +133,17 @@ void View_your_record()
             fflush(stdin);
             printf("Age: %d\n", Help->Age);
             printf("Password: %s\n\n", Help->Password);
-            printf("*********************************");
+            printf("************************************");
 
 }
-
+/*
+----------------------------------------------------------------------------
+Name:Edit_your_password
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to Edit his saved password in memory.
+----------------------------------------------------------------------------
+*/
 
 void Edit_your_password()
 {
@@ -105,7 +151,7 @@ void Edit_your_password()
     int  c;
     int i;
     printf("Enter New Password:\n\n");
-	
+
     for (i = 0; i < 100; i++) {
         c = getch();
         if(c == 13)
@@ -115,10 +161,18 @@ void Edit_your_password()
     }
 	New_pass[i]='\0';
     printf("\n");
-	
-	strcpy(Help->Password,New_pass);
-}
 
+	strcpy(Help->Password,New_pass);
+	printf("Changed successfully\n");
+}
+/*
+----------------------------------------------------------------------------
+Name:Edit_your_name
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to Edit his saved name in memory.
+----------------------------------------------------------------------------
+*/
 void Edit_your_name()
 {
     char New_Name[100];
@@ -127,5 +181,5 @@ void Edit_your_name()
     gets(New_Name);
 	fflush(stdin);
 	strcpy(Help->Name,New_Name);
+	printf("Changed successfully\n");
 }
-
