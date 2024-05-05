@@ -1,16 +1,26 @@
 #include "Heder.h"
 
 char choise_2;
+/*
+----------------------------------------------------------------------------
+Name:first_page
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to guide to the next page .
+----------------------------------------------------------------------------
+*/
 void first_page()
 {
-	int ret =Login();
-    unsigned int choise;
-    /*printf("loading");
+    printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }*/
+        }
+    clearScreen();
+	int ret =Login();
+    unsigned int choise;
+
         switch(ret)
         {
         case 1:
@@ -19,7 +29,7 @@ void first_page()
         case 2:
             user();
             break;
-        case -1:  // when no student saved in memory
+        case -1:  // when no student saved in memory or he couldn't login
             EXIT();
             break;
         default:
@@ -49,7 +59,14 @@ void first_page()
     }
 
 }
-
+/*
+----------------------------------------------------------------------------
+Name:clearScreen
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to clear screen after each process.
+----------------------------------------------------------------------------
+*/
 
 void clearScreen() {
     #ifdef _WIN32
@@ -59,17 +76,33 @@ void clearScreen() {
     #endif
 
 }
+/*
+----------------------------------------------------------------------------
+Name:EXIT
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to exit out of program.
+----------------------------------------------------------------------------
+*/
 void EXIT()
 {
-    /*printf("loading");
+    printf("loading");
     for(int i=0;i<3;i++)
-            {
-                printf(".");
-                sleep(1);
-            }
-        clearScreen();*/
+        {
+            printf(".");
+            sleep(1);
+        }
+    clearScreen();
     printf("thank you <3 \n");
 }
+/*
+----------------------------------------------------------------------------
+Name:welcome_admin
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to register for the first time.
+----------------------------------------------------------------------------
+*/
 int welcome_admin() {
     char Username[50];
     char Pasword[50];
@@ -127,6 +160,14 @@ extern  struct STUDENTS * Head;
 struct STUDENTS *HELP2=NULL;
 
 int flagg=0;
+/*
+---------------------------------------------------------------------------------------------------
+Name:save_data
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to save data after all function done (after changes in memory,to update csv file).
+----------------------------------------------------------------------------------------------------
+*/
 void save_data()
  {
     FILE *file = fopen("Student.csv", "w");
@@ -135,11 +176,11 @@ void save_data()
         exit(1);
     }
 
-    fclose(file); 
+    fclose(file);
 
     HELP2 = Head;
     while (HELP2 != NULL) {
-        file = fopen("Student.csv", "a"); 
+        file = fopen("Student.csv", "a");
         if (file == NULL) {
             printf("Error opening file.\n");
             exit(1);
@@ -151,7 +192,14 @@ void save_data()
     }
 }
 
-
+/*
+----------------------------------------------------------------------------
+Name:clear_list
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to free memory(linked list space).
+----------------------------------------------------------------------------
+*/
 void clear_list()
  {
     while (Head != NULL)
@@ -161,7 +209,14 @@ void clear_list()
         free(ptr);
         }
  }
-
+/*
+----------------------------------------------------------------------------
+Name:load_data
+Parameters:No parameters
+Return: Nothing to return
+Usage: it used to load data at the beginning of program.
+----------------------------------------------------------------------------
+*/
 void load_data()
  {
 	flagg=0;
@@ -181,10 +236,10 @@ void load_data()
         }
 
         sscanf(line, "%99[^,],%f,%d,%99[^,],%d,%s\n", newStudent->Name, &newStudent->Grade, &newStudent->Id, newStudent->Gender,&newStudent->Age, newStudent->Password);
-		
+
         newStudent->NEXT = NULL;
         if(flagg++==0) Head = newStudent;
-		else 
+		else
 		{
 			HELP2=Head;
 			while(HELP2->NEXT!=NULL) HELP2=HELP2->NEXT;
