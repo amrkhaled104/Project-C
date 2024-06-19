@@ -17,6 +17,7 @@ Usage: it ask if you are an admin or student and guide him to register page
 
 int Login()
 {
+
     char choise;
     char choise_2;
 
@@ -24,6 +25,7 @@ int Login()
         printf("for admin enter [A] : \n");
         printf("for user  enter [U] : \n");
         printf("***************************\n");
+        fflush(stdin);
         scanf("%c",&choise);
 		printf("loading");
         for(int i=0;i<3;i++)
@@ -36,7 +38,7 @@ int Login()
         {
         case 'A':
             ret=login_admin();
-            if(ret==-1)//when no student saved in memory or login is false
+            if(ret==-1)//when info saved in memory or login is false
             {
                 return -1;
             }
@@ -47,7 +49,7 @@ int Login()
             break;
         case 'U':
             ret=login_user(&User_Id);
-            if(ret==-1)//when no student saved in memory or login is false
+            if(ret==-1)//when info saved in memory or login is false
             {
                 return -1;
             }
@@ -138,7 +140,7 @@ int login_admin()
 				{
 					clearScreen();
 				    printf("No matter what you do, thief, you will not be able to hack the system\n");
-				    return 0;
+				    return -1;
 				}
 				// أغلق ملف النص
 				fclose(file);
@@ -150,7 +152,7 @@ Name:login_user
 Parameters:one parameter (poiter to User Id)
 Return: it return (int) Flag : [1] if he login Successfully and [-1]
 (if he enter password or Id wrong 3 time) or(no data in memory)
-Usage: it ask admin about his information to login and, make sure it is True
+Usage: it ask user about his information to login and, make sure it is True
 ----------------------------------------------------------------------------
 */
 int login_user(int *User_Id)
