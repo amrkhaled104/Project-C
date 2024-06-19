@@ -9,15 +9,7 @@ Return: Nothing to return
 Usage: it used to guide to the next page .
 ----------------------------------------------------------------------------
 */
-void first_page()
-{
-    printf("loading");
-    for(int i=0;i<3;i++)
-        {
-            printf(".");
-            sleep(1);
-        }
-    clearScreen();
+void first_page(){
 	int ret =Login();
     unsigned int choise;
 
@@ -29,7 +21,7 @@ void first_page()
         case 2:
             user();
             break;
-        case -1:  // when no student saved in memory or he couldn't login
+        case -1:  // when no info saved in memory or he couldn't login
             EXIT();
             break;
         default:
@@ -84,8 +76,7 @@ Return: Nothing to return
 Usage: it used to exit out of program.
 ----------------------------------------------------------------------------
 */
-void EXIT()
-{
+void EXIT(){
     printf("loading");
     for(int i=0;i<3;i++)
         {
@@ -217,8 +208,7 @@ Return: Nothing to return
 Usage: it used to load data at the beginning of program.
 ----------------------------------------------------------------------------
 */
-void load_data()
- {
+void load_data(){
 	flagg=0;
     clear_list();
     FILE *file = fopen("Student.csv", "r");
