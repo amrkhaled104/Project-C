@@ -1,64 +1,28 @@
 #include "Heder.h"
 
 char choise_2;
-/*
-----------------------------------------------------------------------------
-Name:first_page
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to guide to the next page .
-----------------------------------------------------------------------------
-*/
-void first_page(){
+void first_page()
+{
 	int ret =Login();
     unsigned int choise;
 
         switch(ret)
-        {
-        case 1:
-            admin();
-            break;
-        case 2:
-            user();
-            break;
-        case -1:  // when no info saved in memory or he couldn't login
-            EXIT();
-            break;
-        default:
-            printf("Invalid option!!!!!! \n");
-            a:for(int i=0;i<1;i++){
-			//clearScreen();
-			printf("***************************\n");
-			printf("for exit enter   [E] : \n");
-			printf("for again  enter [L] : \n");
-			printf("***************************\n");
-			fflush(stdin);
-			scanf("%c",&choise_2);
-			switch(choise_2)
-			{
-			case 'E':
+		{
+			case 1:
+				admin();
+				break;
+			case 2:
+				user();
+				break;
+			case -1:  // when no info saved in memory or he couldn't login
 				EXIT();
 				break;
-			case 'L':
-                first_page();
-				//clearScreen();
-				break;
 			default:
-				printf("Invalid option!!!!!! \n");
-				goto a;
-			}
-		}
-    }
+			break;
+        }
 
 }
-/*
-----------------------------------------------------------------------------
-Name:clearScreen
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to clear screen after each process.
-----------------------------------------------------------------------------
-*/
+
 
 void clearScreen() {
     #ifdef _WIN32
@@ -68,14 +32,7 @@ void clearScreen() {
     #endif
 
 }
-/*
-----------------------------------------------------------------------------
-Name:EXIT
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to exit out of program.
-----------------------------------------------------------------------------
-*/
+
 void EXIT(){
     printf("loading");
     for(int i=0;i<3;i++)
@@ -84,16 +41,9 @@ void EXIT(){
             sleep(1);
         }
     clearScreen();
-    printf("thank you <3 \n");
+    printf("thank you <3 \n");sleep(1);
 }
-/*
-----------------------------------------------------------------------------
-Name:welcome_admin
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to register for the first time.
-----------------------------------------------------------------------------
-*/
+
 int welcome_admin() {
     char Username[50];
     char Pasword[50];
@@ -142,7 +92,8 @@ int welcome_admin() {
         fclose(file);
 		EXIT();
        return 1;
-    } else {
+    }
+	else {
         fclose(file);
         return 0;
     }
@@ -151,14 +102,7 @@ extern  struct STUDENTS * Head;
 struct STUDENTS *HELP2=NULL;
 
 int flagg=0;
-/*
----------------------------------------------------------------------------------------------------
-Name:save_data
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to save data after all function done (after changes in memory,to update csv file).
-----------------------------------------------------------------------------------------------------
-*/
+
 void save_data()
  {
     FILE *file = fopen("Student.csv", "w");
@@ -200,14 +144,7 @@ void clear_list()
         free(ptr);
         }
  }
-/*
-----------------------------------------------------------------------------
-Name:load_data
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to load data at the beginning of program.
-----------------------------------------------------------------------------
-*/
+
 void load_data(){
 	flagg=0;
     clear_list();

@@ -1,25 +1,20 @@
 #include "Heder.h"
-//عملتله اكسترين علشان ف هنا فانكشن معتمده علهيه وعلشان اعرف استخدمه
+
 extern  struct STUDENTS * Head;
 struct STUDENTS * HELP=NULL;
 struct STUDENTS * PAST=NULL;
 struct STUDENTS * TEMP=NULL;
 char admin_password[10];
-/*
-----------------------------------------------------------------------------
-Name:admin
-Parameters:No parameters
-Return: Nothing to return
-Usage: it ask if he want menu or to exit or return to first bage
-----------------------------------------------------------------------------
-*/
+
 void admin()
-{   printf("loading");
+{   
+
+   /*printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }
+        }*/
     clearScreen();
     char choice_2;
     while(1)
@@ -38,36 +33,28 @@ void admin()
         else if (choice_2=='E')
         {
             EXIT();
-               break;
+            break;
         }
 		else if (choice_2=='B')
         {
             first_page();
-               break;
+            break;
         }
         else
         {
-
-            printf("Invalid option!!!!!! \n");
+            printf("Invalid option!!!!!!\n");
         }
     }
 
 }
-/*
-----------------------------------------------------------------------------
-Name:menu_admin
-Parameters:No parameters
-Return: Nothing to return
-Usage: it show menu for admin and ask him to choose what page he want to go to.
-----------------------------------------------------------------------------
-*/
+
 void menu_admin(){
-    printf("loading");
+    /*printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }
+        }*/
     clearScreen();
     unsigned int menu_choice;
     printf("                 menu                  \n");
@@ -82,45 +69,40 @@ void menu_admin(){
     fflush(stdin);
     scanf("%i",&menu_choice);
     switch(menu_choice)
-        {
-        case 1:
-            Add_student_record();
-            break;
-        case 2:
-            Remove_student_record();
-            break;
-        case 3:
-            View_student_record();
-            break;
-        case 4:
-            View_all_records();
-            break;
-        case 5:
-            Edit_admin_password();
-            break;
-        case 6:
-            Edit_student_grade();
-            break;
-        default:
-            printf("Invalid option!!!!!! \n");
-        }
+		{
+			case 1:
+				Add_student_record();
+				break;
+			case 2:
+				Remove_student_record();
+				break;
+			case 3:
+				View_student_record();
+				break;
+			case 4:
+				View_all_records();
+				break;
+			case 5:
+				Edit_admin_password();
+				break;
+			case 6:
+				Edit_student_grade();
+				break;
+			default:
+				printf("Invalid option!!!!!! \n");sleep(1);
+				menu_admin();
+		}
+		
 }
-/*
-----------------------------------------------------------------------------
-Name:Add_student_record
-Parameters:No parameters
-Return: Nothing to return
-Usage: it is used to add information about new student.
-----------------------------------------------------------------------------
-*/
+
 void Add_student_record()
 {
-    printf("loading");
+    /*printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }
+        }*/
     clearScreen();
     struct STUDENTS *SNew;
 	if(Head==NULL)
@@ -141,7 +123,10 @@ void Add_student_record()
 	printf("Now You Enter Data Please Foucs\n\n");
 	printf("Enter Name:\n");gets(SNew->Name);
 	fflush(stdin);
-	printf("Enter Grade:\n");scanf("%f",&SNew->Grade);
+    while(1){
+		printf("Enter Grade(0->100):\n");scanf("%f",&SNew->Grade);
+		if(SNew->Grade>=0&&SNew->Grade<=100) break;
+	}
 	fflush(stdin);
 	while(1)
     {
@@ -176,24 +161,17 @@ void Add_student_record()
         SNew->Password[i]=c;
     }
 	SNew->Password[i] = '\0';
-	printf("\n");
+	printf("\nDONE \n");
 }
-/*
-----------------------------------------------------------------------------
-Name:View_all_records
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to print all information about all students.
-----------------------------------------------------------------------------
-*/
+
 void View_all_records()
 {
-    printf("loading");
+    /*printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }
+        }*/
     clearScreen();
 	HELP=Head;
 	int counter_Client=0;
@@ -211,22 +189,14 @@ void View_all_records()
 		HELP=HELP->NEXT;
 	}
 }
-/*
-----------------------------------------------------------------------------
-Name:View_student_record
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to print all information about specific student.
-----------------------------------------------------------------------------
-*/
 void View_student_record ()
 {
-    printf("loading");
+    /*printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }
+        }*/
     clearScreen();
     int found =0 ;
     int user_id=0;
@@ -239,7 +209,7 @@ void View_student_record ()
         {
             found =1 ;
             printf("\n         student info           \n");
-            printf("************************************");
+            printf("************************************\n");
             printf("Name: %s    \n", HELP->Name);
             fflush(stdin);
             printf("Grade: %0.2f \n", HELP->Grade);
@@ -251,22 +221,15 @@ void View_student_record ()
             printf("*********************************");
 
 
-        printf("\n");
+            printf("\n");
             break;
-	}
+	   }
 	  HELP= HELP->NEXT ;
 	}
 
 	if (!found) printf("Student with ID %d Not Found Ya Admoooooooooooooooooon.\n", user_id);
 }
-/*
-----------------------------------------------------------------------------
-Name:Edit_admin_password
-Parameters:No parameters
-Return: Nothing to return
-Usage:it used to Edit admin password.
-----------------------------------------------------------------------------
-*/
+
 void Edit_admin_password() {
     FILE *file;
     char line[100];
@@ -274,14 +237,6 @@ void Edit_admin_password() {
     char password[10];
     char *token;
     char username[50];
-
-    printf("loading");
-    printf("loading");
-    for(int i=0;i<3;i++)
-        {
-            printf(".");
-            sleep(1);
-        }
     clearScreen();
     printf("Enter username: ");
     scanf("%s",username);
@@ -323,23 +278,15 @@ void Edit_admin_password() {
     printf("\nPassword not found.\n");
     fclose(file);
 }
-/*
-----------------------------------------------------------------------------
-Name:Edit_student_grade
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used for admin to edit student grade.
-----------------------------------------------------------------------------
-*/
 void Edit_student_grade() {
     unsigned int check_id, new_grade;
     char choice;
-    printf("loading");
+   /* printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }
+        }*/
     clearScreen();
     printf("***********************************\n");
     printf("Enter ID of student to edit:\n");
@@ -394,23 +341,16 @@ void Edit_student_grade() {
 
     printf("***********************************\n");
 }
-/*
-----------------------------------------------------------------------------
-Name:Remove_student_record
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used for admin to Remove student grade.
-----------------------------------------------------------------------------
-*/
+
 void Remove_student_record(){
     unsigned int check_id;
     char choice;
-    printf("loading");
+    /*printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }
+        }*/
     clearScreen();
     printf("***********************************\n");
     printf("Enter ID of student to delete:\n");

@@ -3,21 +3,14 @@
 struct STUDENTS *Head=NULL;
 struct STUDENTS *Help=NULL;
 int User_Id;
-/*
-----------------------------------------------------------------------------
-Name:user
-Parameters:No parameters
-Return: Nothing to return
-Usage: it ask if he want menu or to exit.
-----------------------------------------------------------------------------
-*/
+
 void user()
-{   printf("loading");
+{   /*printf("loading");
     for(int i=0;i<3;i++)
         {
             printf(".");
             sleep(1);
-        }
+        }*/
     clearScreen();
 
    while(1)
@@ -45,14 +38,7 @@ void user()
         }
     }
 }
-/*
-----------------------------------------------------------------------------
-Name:menu_user
-Parameters:No parameters
-Return: Nothing to return
-Usage: it show menu for user and ask him to choose what page he want to go to.
-----------------------------------------------------------------------------
-*/
+
 void menu_user()
 {   unsigned int menu_choice;
     printf("loading");
@@ -72,28 +58,20 @@ void menu_user()
 	Find_Student();
     switch(menu_choice)
         {
-        case 1:
-            View_your_record();
-            break;
-        case 2:
-            Edit_your_password();
-            break;
-        case 3:
-            Edit_your_name();
-            break;
-        default:
-            printf("Invalid option!!!!!! \n");
+			case 1:
+				View_your_record();
+				break;
+			case 2:
+				Edit_your_password();
+				break;
+			case 3:
+				Edit_your_name();
+				break;
+			default:
+				printf("Invalid option!!!!!! \n");
+				 menu_user();
         }
 }
-/*
-----------------------------------------------------------------------------
-Name:Find_Student
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to search about student in memory.
-----------------------------------------------------------------------------
-*/
-
 void Find_Student()
 {
 	printf("loading");
@@ -113,14 +91,7 @@ void Find_Student()
 	  	Help= Help->NEXT ;
 	}
 }
-/*
-----------------------------------------------------------------------------
-Name:View_your_record
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to View his record.
-----------------------------------------------------------------------------
-*/
+
 void View_your_record()
 {
 	        printf("\n         %s info           \n",Help->Name);
@@ -136,14 +107,6 @@ void View_your_record()
             printf("************************************");
 
 }
-/*
-----------------------------------------------------------------------------
-Name:Edit_your_password
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to Edit his saved password in memory.
-----------------------------------------------------------------------------
-*/
 
 void Edit_your_password()
 {
@@ -165,14 +128,7 @@ void Edit_your_password()
 	strcpy(Help->Password,New_pass);
 	printf("Changed successfully\n");
 }
-/*
-----------------------------------------------------------------------------
-Name:Edit_your_name
-Parameters:No parameters
-Return: Nothing to return
-Usage: it used to Edit his saved name in memory.
-----------------------------------------------------------------------------
-*/
+
 void Edit_your_name()
 {
     char New_Name[100];
