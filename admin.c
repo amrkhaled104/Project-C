@@ -289,7 +289,6 @@ void View_student_record ()
 
 	if (!found) printf("Student with ID %d Not Found Ya Admoooooooooooooooooon.\n", user_id);
 }
-
 void Edit_admin_password() {
     FILE *file;
     char line[100];
