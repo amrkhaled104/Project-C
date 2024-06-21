@@ -7,7 +7,7 @@ struct STUDENTS * TEMP=NULL;
 char admin_password[10];
 
 void admin()
-{   
+{
 
    /*printf("loading");
     for(int i=0;i<3;i++)
@@ -92,7 +92,7 @@ void menu_admin(){
 				printf("Invalid option!!!!!! \n");sleep(1);
 				menu_admin();
 		}
-		
+
 }
 
 void Add_student_record()
@@ -121,19 +121,55 @@ void Add_student_record()
 	SNew->NEXT=NULL;
 	fflush(stdin);
 	printf("Now You Enter Data Please Foucs\n\n");
+//name---------------------
 	printf("Enter Name:\n");gets(SNew->Name);
 	fflush(stdin);
-    while(1){
-		printf("Enter Grade(0->100):\n");scanf("%f",&SNew->Grade);
-		if(SNew->Grade>=0&&SNew->Grade<=100) break;
-	}
-	fflush(stdin);
-	while(1)
+//grade--------------------
+    while (1)
     {
-		struct STUDENTS * CheckID=NULL;
+        while (1)
+         {
+            printf("Enter Grade (0 -> 100):\n");
+            if (scanf("%f", &SNew->Grade) == 1)
+            {
+                break;
+            }
+            else
+            {
+                printf("Invalid input, please enter a floating-point number.\n");
+                while (getchar() != '\n');
+            }
+        }
+
+        if (SNew->Grade >= 0 && SNew->Grade <= 100)
+        {
+            break;
+        } else
+        {
+            printf("Invalid option, please enter a grade between 0 and 100.\n");
+        }
+    }
+	fflush(stdin);
+//ID--------------------
+	struct STUDENTS * CheckID=NULL;
 		CheckID=Head;
-		printf("Enter ID:\n");scanf(" %i",&SNew->Id);
-        while(CheckID->NEXT!=NULL)
+    while(1)
+    {
+		 while (1)
+        {
+            printf("Enter ID:\n");
+            if (scanf("%i", &SNew->Id) == 1)
+            {
+                break;
+            }
+            else
+            {
+                printf("Invalid input, please enter an integer.\n");
+                while (getchar() != '\n');
+            }
+        }
+
+	while(CheckID->NEXT!=NULL)
         {
             if(CheckID->Id==SNew->Id)
             {
@@ -148,8 +184,31 @@ void Add_student_record()
 		if(CheckID->NEXT==NULL) break;
     }
 
-	printf("Enter Gender:\n");scanf(" %s",&SNew->Gender);
-	printf("Enter Age:\n");scanf("%i",&SNew->Age);
+//GENDER----------------------
+    while(1)
+    {
+        printf("Enter Gender (male/female):\n");
+        scanf(" %s",&SNew->Gender);
+        if(strcmp("female",SNew->Gender)!=0 && strcmp("male",SNew->Gender)!=0)
+        {
+            printf("invalid option\n");
+        }
+        else
+        {
+            break;
+        }
+    }
+//age------------------------
+	while(1) {
+        printf("Enter Age:\n");
+        if (scanf("%d", &SNew->Age) == 1) {
+            break;
+        } else {
+            printf("Invalid input, please enter an integer.\n");
+            while(getchar() != '\n');
+        }
+    }
+//password--------------------
 	printf("Enter Password:\n");
 	int c;int i;
     for (i = 0; i < 50; i++)
@@ -162,6 +221,7 @@ void Add_student_record()
     }
 	SNew->Password[i] = '\0';
 	printf("\nDONE \n");
+	printf("***************************\n");
 }
 
 void View_all_records()
