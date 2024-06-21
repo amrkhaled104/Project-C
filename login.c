@@ -116,7 +116,8 @@ int login_admin()
 					else
 					{
 						Flag=1;
-						if(attempts!=0){
+						if(attempts!=0)
+                        {
 						   clearScreen();
 						   printf("Invalid username or password You Can Try Again.\n");
 						}
