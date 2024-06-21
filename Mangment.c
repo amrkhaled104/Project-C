@@ -41,7 +41,8 @@ void EXIT(){
             sleep(1);
         }
     clearScreen();
-    printf("thank you <3 \n");sleep(1);
+    printf("thank you <3 \n");
+    sleep(1);
 }
 
 int welcome_admin() {

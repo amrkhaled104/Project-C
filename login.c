@@ -60,6 +60,7 @@ int login_admin()
 	char password[50];
 	char file_username[50];
 	char file_password[50];
+	char line[50];
     printf("***************************\n");
 	// افتح ملف النص للقراءة
     int c,i=0;
@@ -71,6 +72,8 @@ int login_admin()
 				}
 
 				// اقرأ اسم المستخدم من الملف حتى الفاصلة
+        while (fgets(line, sizeof(line), file) != NULL)
+        {
 				while ((c = fgetc(file)) != EOF && c != ',')
 				{
 					file_username[i++] = c;
@@ -84,6 +87,7 @@ int login_admin()
 					file_password[i++] = c;
 				}
 				file_password[i] = '\0'; // إضافة نهاية السلسلة
+
 				int attempts=3,Flag=0;
 				while(attempts--)
 				{
@@ -118,6 +122,7 @@ int login_admin()
 						}
 					}
 				}
+				break;
 				if(Flag==1)
 				{
 					clearScreen();
@@ -126,7 +131,7 @@ int login_admin()
 				}
 				// أغلق ملف النص
 				fclose(file);
-
+        }
 }
 
 int login_user(int *User_Id)
