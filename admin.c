@@ -129,8 +129,9 @@ void Add_student_record()
     {
         while (1)
          {
+			 char term;
             printf("Enter Grade (0 -> 100):\n");
-            if (scanf("%f", &SNew->Grade) == 1)
+            if (scanf("%f%c", &SNew->Grade, &term) == 2 && term == '\n')
             {
                 break;
             }
@@ -456,4 +457,4 @@ void Remove_student_record(){
 
 
 
-//gcc admin.c User.c Mangment.c main.c -o p.exe
+//gcc admin.c User.c Mangment.c main.c login.c -o p.exe
